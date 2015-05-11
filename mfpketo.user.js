@@ -178,14 +178,15 @@ function main() {
 
 
         // HACK to show net carbs
-        if (!jQuery(this).hasClass('alt')) {
-            net_carbs = carbs - fiber;
-            if (!isNaN(net_carbs)) {
-                tds.eq(net_carbs_i).text(net_carbs);
-            } else if (jQuery(this).hasClass("total")) {
-                tds.eq(net_carbs_i).text("0");
-            }
-        } else {
+        net_carbs = carbs - fiber;
+        if (!isNaN(net_carbs)) {
+          tds.eq(net_carbs_i).text(net_carbs);
+        } else if (jQuery(this).hasClass("total")) {
+          tds.eq(net_carbs_i).text("0");
+        }
+
+        // My carb goal includes fiber, I want fiber removed from my goal also
+        if (jQuery(this).hasClass('alt')) {
             // record goal
             net_carb_total_goal = net_carbs;
         }
